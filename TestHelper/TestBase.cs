@@ -28,7 +28,7 @@ namespace TestHelpers
                 _testContext.Database.EnsureDeleted();
                 _testContext.Dispose();
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
             finally
             {
                 _testContext.Dispose();

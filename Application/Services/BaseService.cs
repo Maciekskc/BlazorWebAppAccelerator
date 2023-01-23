@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Persistance;
 
-namespace Application.Services
+namespace Infrastructure.Services
 {
     public class BaseService
     {
