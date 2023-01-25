@@ -1,9 +1,8 @@
 ﻿using Data.Models;
 using Domain.Models;
-using Infrastructure.Security;
 using System.Security.Claims;
 
-namespace Application.Interfaces
+namespace Infrastructure.Security
 {
     public interface IJwtGenerator
     {

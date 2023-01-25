@@ -1,6 +1,6 @@
-﻿using Application.Interfaces;
-using Data.Models;
+﻿using Data.Models;
 using Infrastructure.Interfaces;
+using Infrastructure.Security;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;

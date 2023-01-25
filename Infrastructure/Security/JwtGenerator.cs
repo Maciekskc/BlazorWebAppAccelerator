@@ -1,5 +1,4 @@
-﻿using Application.Interfaces;
-using Data.Models;
+﻿using Data.Models;
 using Domain.Models;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
