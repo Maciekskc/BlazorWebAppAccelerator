@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppAccelerator", "WebAppAccelerator\WebAppAccelerator.csproj", "{4AEB3399-FB4C-4711-A5AF-49A0A9A37DED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{4AEB3399-FB4C-4711-A5AF-49A0A9A37DED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistance", "Persistance\Persistance.csproj", "{C492E2D9-FBC0-4635-B43E-E87A76996D6D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{FCEB4BCC-9206-4999-8929-2E385E3BA64E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Application\Infrastructure.csproj", "{4A6E0F80-82E4-41EB-BFB6-8B35CEC140FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{4A6E0F80-82E4-41EB-BFB6-8B35CEC140FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6E7C6B47-F6B9-4D77-BEF5-84DEA0FCB5DF}"
 EndProject
@@ -17,11 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHelper", "TestHelper\Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestServices", "TestServices\TestServices.csproj", "{820D1ADD-A610-4838-9CCE-8DA8A3A8F698}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{5B4F8424-CE9E-4966-A910-F9D907D4189F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{5B4F8424-CE9E-4966-A910-F9D907D4189F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{7F8C836B-5CB4-4326-8F59-1FE38BF471C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{7F8C836B-5CB4-4326-8F59-1FE38BF471C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "ClientApplication\Application.csproj", "{0CE047BD-D9AC-4326-82C0-CE6AF88E78A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{0CE047BD-D9AC-4326-82C0-CE6AF88E78A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{23F8A0AF-D0D9-4810-86DA-F5E7E54AA53E}"
 EndProject

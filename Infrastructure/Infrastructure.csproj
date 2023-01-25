@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <Folder Include="Mappers\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Persistance\Persistance.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

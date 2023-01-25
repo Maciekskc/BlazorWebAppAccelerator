@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
-using WebAppAccelerator.Areas.Identity;
-using WebAppAccelerator.Data;
+using WebApp.Areas.Identity;
+using WebApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
