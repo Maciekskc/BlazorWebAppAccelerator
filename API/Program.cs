@@ -1,3 +1,8 @@
+using Application.Interfaces;
+using Infrastructure;
+using Infrastructure.Interfaces;
+using Infrastructure.Security;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +24,24 @@ builder.Services.Configure<IdentityOptions>(options =>
     // Password settings.
     options.Password.RequireLowercase = true;
 });
+
+//Services
+builder.Services.AddScoped<IJwtGenerator, JwtGenerator>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(opt =>
+{
+    opt.SaveToken = true;
+    opt.TokenValidationParameters = TokenValidationParametersDefaults.GetDefaultParameters();
+});
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
