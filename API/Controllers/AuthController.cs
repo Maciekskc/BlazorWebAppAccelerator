@@ -23,9 +23,10 @@ namespace API.Controllers
         {
             var response = await _authService.LoginAsync(dto);
 
-            AssignTokenCookiesToResponse(response.Token, response.RefreshToken);
+            if (response.StatusCode == HttpStatusCode.OK)
+                AssignTokenCookiesToResponse(response.Payload.Token, response.Payload.RefreshToken);
 
-            return Ok(response);
+            return SendResponse(response);
         }
 
         [Produces(typeof(RegisterResponse))]
@@ -33,7 +34,7 @@ namespace API.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequest dto)
         {
             var response = await _authService.RegisterAsync(dto);
-            return Ok(response);
+            return SendResponse(response);
         }
 
         [Produces(typeof(RefreshTokenResponse))]
@@ -45,9 +46,10 @@ namespace API.Controllers
 
             var response = await _authService.RefreshTokenAsync(accessToken, refreshToken);
 
-            AssignTokenCookiesToResponse(response.Token, response.RefreshToken);
+            if (response.StatusCode == HttpStatusCode.OK)
+                AssignTokenCookiesToResponse(response.Payload.Token, response.Payload.RefreshToken);
 
-            return Ok(response);
+            return SendResponse(response);
         }
 
         private void AssignTokenCookiesToResponse(string accessToken, string refreshToken)

@@ -1,12 +1,12 @@
 ﻿using Data.Models;
 using Infrastructure.Interfaces;
 using Infrastructure.Security;
+using Infrastructure.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Shared.DTOs.Auth.Requests;
 using Shared.DTOs.Auth.Responses;
-using System.ComponentModel.DataAnnotations;
 using System.Net;
 
 namespace Infrastructure.Services
@@ -23,7 +23,7 @@ namespace Infrastructure.Services
             _jwtGenerator = jwtGenerator;
         }
 
-        public async Task<LoginResponse> LoginAsync(LoginRequest request)
+        public async Task<ServiceResponse<LoginResponse>> LoginAsync(LoginRequest request)
         {
             var user = await UserManager.FindByEmailAsync(request.Email);
 
@@ -38,14 +38,14 @@ namespace Infrastructure.Services
 
             var generatedToken = await _jwtGenerator.CreateTokenAsync(user);
 
-            return new LoginResponse()
+            return new ServiceResponse<LoginResponse>(HttpStatusCode.OK, new LoginResponse()
             {
                 Token = generatedToken.Token,
                 RefreshToken = generatedToken.RefreshToken,
-            };
+            });
         }
 
-        public async Task<RegisterResponse> RegisterAsync(RegisterRequest request)
+        public async Task<ServiceResponse<RegisterResponse>> RegisterAsync(RegisterRequest request)
         {
             var userToRegister = new ApplicationUser()
             {
@@ -57,14 +57,14 @@ namespace Infrastructure.Services
             await UserManager.CreateAsync(userToRegister, request.Password);
 
             var token = await _jwtGenerator.CreateTokenAsync(userToRegister);
-            return new RegisterResponse
+            return new ServiceResponse<RegisterResponse>(HttpStatusCode.OK, new RegisterResponse
             {
                 Token = token.Token,
                 RefreshToken = token.RefreshToken
-            };
+            });
         }
 
-        public async Task<RefreshTokenResponse> RefreshTokenAsync(string accessToken, string refreshToken)
+        public async Task<ServiceResponse<RefreshTokenResponse>> RefreshTokenAsync(string accessToken, string refreshToken)
         {
             if (string.IsNullOrWhiteSpace(accessToken))
                 throw new HttpRequestException("Empty token",null, HttpStatusCode.BadRequest);
@@ -101,7 +101,11 @@ namespace Infrastructure.Services
 
             var tokens = await _jwtGenerator.CreateTokenAsync(user);
 
-            return new RefreshTokenResponse { RefreshToken = tokens.RefreshToken, Token = tokens.Token };
+            return new ServiceResponse<RefreshTokenResponse>(HttpStatusCode.OK, new RefreshTokenResponse
+            {
+                RefreshToken = tokens.RefreshToken,
+                Token = tokens.Token 
+            });
         }
     }
 }

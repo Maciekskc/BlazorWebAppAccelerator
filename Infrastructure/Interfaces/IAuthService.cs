@@ -1,13 +1,14 @@
-﻿using Shared.DTOs.Auth.Requests;
+﻿using Infrastructure.Utilities;
+using Shared.DTOs.Auth.Requests;
 using Shared.DTOs.Auth.Responses;
 
 namespace Infrastructure.Interfaces;
 
 public interface IAuthService
 {
-    Task<LoginResponse> LoginAsync(LoginRequest request);
+    Task<ServiceResponse<LoginResponse>> LoginAsync(LoginRequest request);
 
-    Task<RegisterResponse> RegisterAsync(RegisterRequest request);
+    Task<ServiceResponse<RegisterResponse>> RegisterAsync(RegisterRequest request);
 
-    Task<RefreshTokenResponse> RefreshTokenAsync(string accessToken, string refreshToken);
+    Task<ServiceResponse<RefreshTokenResponse>> RefreshTokenAsync(string accessToken, string refreshToken);
 }
