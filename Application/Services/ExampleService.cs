@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
+using Shared.DTOs.Example;
 using Shared.Utilities;
 
 namespace Application.Services
@@ -11,9 +12,9 @@ namespace Application.Services
         {
         }
 
-        public async Task<string?> GetExampleAsync()
+        public async Task<MessageResponse?> GetExampleAsync()
         {
-            return await HttpClient.Get<string>(EndpointMap.ExampleControllerPrefix + EndpointMap.ExampleController_HelloWorld);
+            return await HttpClient.Get<MessageResponse>(EndpointMap.ExampleControllerPrefix + EndpointMap.ExampleController_HelloWorld);
         }
     }
 }

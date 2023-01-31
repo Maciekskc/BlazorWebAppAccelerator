@@ -9,11 +9,11 @@ namespace API.Controllers;
 
 public class ExampleController : BaseController
 {
-    [Produces(typeof(string))]
+    [Produces(typeof(MessageResponse))]
     [HttpGet(EndpointMap.ExampleController_HelloWorld)]
     public IActionResult Hello()
     {
-        return SendResponse(new ServiceResponse<string>(HttpStatusCode.OK, "Hello World!"));
+        return SendResponse(new ServiceResponse<MessageResponse>(HttpStatusCode.OK, new MessageResponse("Hello World!")));
     }
 
     [Produces(typeof(List<ExampleResponse>))]
@@ -33,7 +33,7 @@ public class ExampleController : BaseController
     [HttpGet(EndpointMap.ExampleController_BadRequest)]
     public IActionResult BadRequestEndpoint()
     {
-        return SendResponse(new ServiceResponse<string>(HttpStatusCode.BadRequest, "BadRequest"));
+        return SendResponse(new ServiceResponse<MessageResponse>(HttpStatusCode.BadRequest, new MessageResponse("BadRequest")));
     }
 
     [Authorize]
@@ -41,6 +41,6 @@ public class ExampleController : BaseController
     [HttpGet(EndpointMap.ExampleController_Authorized)]
     public IActionResult Authorized()
     {
-        return SendResponse(new ServiceResponse<string>(HttpStatusCode.OK, "Authorized"));
+        return SendResponse(new ServiceResponse<MessageResponse>(HttpStatusCode.OK, new MessageResponse("Authorized")));
     }
 }

@@ -30,5 +30,5 @@
     {
         currentCount++;
     }
-    private async Task CallApi() => exampleApiResponse = await _exampleService.GetExampleAsync() ?? "Null Api response";
+    private async Task CallApi() => exampleApiResponse = (await _exampleService.GetExampleAsync())?.Message ?? "Null Api response";
 }

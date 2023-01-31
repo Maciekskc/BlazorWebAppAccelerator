@@ -17,10 +17,8 @@ public class HttpClientWrapper
     {
         try
         {
-            HttpResponseMessage response = await client.GetAsync($"{endpoint}");
-            response.EnsureSuccessStatusCode();
-
-            return await response.Content.ReadFromJsonAsync<T>();
+            var response = await client.GetFromJsonAsync<T>($"{endpoint}");
+            return response;
         }
         catch (Exception)
         {
