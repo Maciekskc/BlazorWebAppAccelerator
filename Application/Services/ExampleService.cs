@@ -16,5 +16,10 @@ namespace Application.Services
         {
             return await HttpClient.Get<MessageResponse>(EndpointMap.ExampleControllerPrefix + EndpointMap.ExampleController_HelloWorld);
         }
+
+        public async Task<List<ExampleResponse>> GetExampleListAsync()
+        {
+            return await HttpClient.Get<List<ExampleResponse>>(EndpointMap.ExampleControllerPrefix + EndpointMap.ExampleController_ExampleCollection);
+        }
     }
 }

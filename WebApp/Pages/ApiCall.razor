@@ -1,0 +1,20 @@
+﻿@page "/apiCall"
+@using Application.Interfaces;
+@using Application.Services;
+@inject IExampleService _exampleService;
+
+<PageTitle>ApiCall</PageTitle>
+
+<p role="status">Api response: @exampleApiResponse</p>
+<button class="btn btn-primary" @onclick="CallApi">Click me</button>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        //_exampleService = new ExampleService(configuration: Configuration);
+    }
+    private string exampleApiResponse = "";
+
+    private async Task CallApi() => exampleApiResponse = (await _exampleService.GetExampleAsync())?.Message ?? "Null Api response";
+}

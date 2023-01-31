@@ -1,15 +1,17 @@
 ﻿@page "/fetchdata"
+@using Application.Interfaces;
+@using Application.Services;
+@using global::Shared.DTOs.Example;
+@inject IExampleService ExampleService
 
 <PageTitle>Weather forecast</PageTitle>
 
-@using WebApp.Data
-@inject WeatherForecastService ForecastService
 
-<h1>Weather forecast</h1>
+<h1>Fetching Api</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
+<p>This component demonstrates fetching collections and displaying it nestet html component.</p>
 
-@if (forecasts == null)
+@if (list == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -18,31 +20,33 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Age</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var item in list)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Age</td>
                 </tr>
             }
         </tbody>
     </table>
+
 }
+<button class="btn btn-primary" @onclick="CallApi">Refresh Data</button>
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private List<ExampleResponse>? list = null;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        await CallApi();
     }
+
+    private async Task CallApi() => list = await ExampleService.GetExampleListAsync();
 }
