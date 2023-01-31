@@ -77,11 +77,11 @@ namespace Infrastructure.Services
             var storedRefreshToken =
                 await DbContext.RefreshTokens.SingleOrDefaultAsync(x => x.Token == refreshToken);
 
-            var validationResult = _jwtGenerator.ValidateRefreshToken(storedRefreshToken, validatedToken);
+            var validationResult = _jwtGenerator.ValidateRefreshToken(storedRefreshToken!, validatedToken);
 
             if (validationResult.Any())
                 return new ServiceResponse<RefreshTokenResponse>(HttpStatusCode.BadRequest,new string[] { $"Invalid Token, {JsonConvert.SerializeObject(validationResult)}" });
-            storedRefreshToken.Used = true;
+            storedRefreshToken!.Used = true;
             DbContext.RefreshTokens.Update(storedRefreshToken);
 
             var saveChangesResponse = await DbContext.SaveChangesAsync();
