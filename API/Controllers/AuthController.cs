@@ -44,7 +44,7 @@ namespace API.Controllers
             HttpContext.Request.Cookies.TryGetValue("refresh-token", out var refreshToken);
             HttpContext.Request.Cookies.TryGetValue("access-token", out var accessToken);
 
-            var response = await _authService.RefreshTokenAsync(accessToken, refreshToken);
+            var response = await _authService.RefreshTokenAsync(accessToken!, refreshToken!);
 
             if (response.StatusCode == HttpStatusCode.OK)
                 AssignTokenCookiesToResponse(response.Payload.Token, response.Payload.RefreshToken);

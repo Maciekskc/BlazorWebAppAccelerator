@@ -1,4 +1,7 @@
 ﻿@page "/counter"
+@using Application.Interfaces;
+@using Application.Services;
+@inject IConfiguration Configuration
 
 <PageTitle>Counter</PageTitle>
 
@@ -8,11 +11,24 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+
+<p role="status">Current count: @exampleApiResponse</p>
+<button class="btn btn-primary" @onclick="CallApi">Click me</button>
+
 @code {
+    private IExampleService _exampleService;
+
+    protected override void OnInitialized()
+    {
+        _exampleService = new ExampleService(configuration: Configuration);
+    }
+
     private int currentCount = 0;
+    private string exampleApiResponse = "Nothing yet";
 
     private void IncrementCount()
     {
         currentCount++;
     }
+    private async Task CallApi() => exampleApiResponse = await _exampleService.GetExampleAsync() ?? "Null Api response";
 }

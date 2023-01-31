@@ -10,7 +10,6 @@ namespace API.Controllers;
 public class ExampleController : BaseController
 {
     [Produces(typeof(string))]
-    [Route(EndpointMap.ExampleController_HelloWorld)]
     [HttpGet(EndpointMap.ExampleController_HelloWorld)]
     public IActionResult Hello()
     {
