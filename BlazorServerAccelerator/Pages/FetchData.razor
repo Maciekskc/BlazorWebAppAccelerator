@@ -1,0 +1,52 @@
+﻿@page "/fetchdata"
+@using Application.DTOs.Example;
+@using Application.Interfaces;
+@using Application.Services;
+@inject IExampleService ExampleService
+
+<PageTitle>Weather forecast</PageTitle>
+
+
+<h1>Fetching Api</h1>
+
+<p>This component demonstrates fetching collections and displaying it nestet html component.</p>
+
+@if (list == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in list)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Age</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+<button class="btn btn-primary" @onclick="GetServiceResponse">Refresh Data</button>
+
+@code {
+    private List<ExampleResponse>? list = null;
+    
+    protected override void OnInitialized()
+    {
+        GetServiceResponse();
+    }
+
+    private void GetServiceResponse() => list = ExampleService.GetExampleList();
+}

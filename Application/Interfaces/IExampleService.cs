@@ -1,9 +1,9 @@
-﻿using Shared.DTOs.Example;
+﻿using Application.DTOs.Example;
 
 namespace Application.Interfaces;
 
 public interface IExampleService
 {
-    public Task<MessageResponse?> GetExampleAsync();
-    public Task<List<ExampleResponse>> GetExampleListAsync();
+    public MessageResponse? GetExample();
+    public List<ExampleResponse> GetExampleList();
 }

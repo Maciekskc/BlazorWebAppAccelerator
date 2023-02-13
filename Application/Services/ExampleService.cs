@@ -1,25 +1,31 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs.Example;
+using Application.Interfaces;
 using Infrastructure.Services;
-using Microsoft.Extensions.Configuration;
-using Shared.DTOs.Example;
-using Shared.Utilities;
+using Infrastructure.Utilities;
+using System.Net;
 
 namespace Application.Services
 {
     public class ExampleService : BaseService, IExampleService
     {
-        public ExampleService(IConfiguration configuration) : base(configuration)
+        public ExampleService(IServiceProvider serviceProvider) : base (serviceProvider)
         {
         }
 
-        public async Task<MessageResponse?> GetExampleAsync()
+        public MessageResponse? GetExample()
         {
-            return await HttpClient.Get<MessageResponse>(EndpointMap.ExampleControllerPrefix + EndpointMap.ExampleController_HelloWorld);
+            return new MessageResponse("Hello there!");
         }
 
-        public async Task<List<ExampleResponse>> GetExampleListAsync()
+        public List<ExampleResponse> GetExampleList()
         {
-            return await HttpClient.Get<List<ExampleResponse>>(EndpointMap.ExampleControllerPrefix + EndpointMap.ExampleController_ExampleCollection);
+            var templateResponseObject = new ExampleResponse("User", "", 0);
+
+            var response = new List<ExampleResponse>();
+            for (int i = 1; i <= 10; i++)
+                response.Add(templateResponseObject with { LastName = i.ToString(), Age = new Random().Next(16, 32) });
+
+            return response;
         }
     }
 }
